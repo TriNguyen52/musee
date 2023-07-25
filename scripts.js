@@ -1,5 +1,3 @@
-// JavaScript code (script.js)
-
 const expandBtn = document.querySelector('.expand-btn');
 const expandableItems = document.querySelectorAll('.expandable');
 const friendListItems = document.querySelectorAll('.friend-list li');
@@ -36,6 +34,12 @@ let postLikes = {
   'post-2': false
 };
 
+function togglePostOptions() {
+  const postOptionsPopup = document.getElementById('post-options-popup');
+  postOptionsPopup.style.display = 'block';
+  const contentArea = document.getElementById('content');
+}
+
 function submitPost() {
   // Implement post submission functionality here
   const textarea = document.getElementById('post-textarea');
@@ -58,6 +62,10 @@ function submitPost() {
     document.getElementById('content').insertAdjacentHTML('beforeend', postHtml);
     textarea.value = '';
   }
+  const postOptionsPopup = document.getElementById('post-options-popup');
+  postOptionsPopup.style.display = 'none';
+  const contentArea = document.getElementById('content');
+  contentArea.classList.remove('blur-background');
 }
 
 function getCurrentTimestamp() {
@@ -87,4 +95,20 @@ function deletePost(postId) {
     postIds.splice(index, 1);
     delete postLikes[postId];
   }
+}
+
+function saveDraft() {
+  // Implement save draft functionality here
+  // For example, you can save the content to local storage or send it to the server
+  alert('Draft saved!');
+}
+
+function cancelPost() {
+  // Clear the textarea and hide the post options popup without posting
+  const textarea = document.getElementById('post-textarea');
+  textarea.value = '';
+  const postOptionsPopup = document.getElementById('post-options-popup');
+  postOptionsPopup.style.display = 'none';
+  const contentArea = document.getElementById('content');
+  contentArea.classList.remove('blur-background');
 }
