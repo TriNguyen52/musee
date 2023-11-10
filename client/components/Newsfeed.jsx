@@ -1,40 +1,10 @@
-import { useState } from 'react'
-import './Home.css'
-import Notifications from './Noti.jsx'
-import Settings from './Settings.jsx'
+import { useAuth0 } from "@auth0/auth0-react";
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 
-export default function Home() {
-
+export default function NewsFeed () {
+    const { user, isAuthenticated } = useAuth0();
     return (
-    <div id="container">
-        <LeftSideBar/>
-        <NewsFeed/>
-        <RightSideBar
-            username="Tri Nguyen"
-            song="Ngot - De Quen"
-        />
-    </div>
-    )
-}
-
-function LeftSideBar () {
-    return (
-        <div id='sidebar'>
-            <ul>
-                <li><a href="#">Home</a></li>
-                {/* <li><Settings /></li> */}
-                <li>Search User</li>
-                <li>Friends</li>
-                <li><Notifications /></li>
-            </ul>
-        </div>
-    )
-}
-
-function NewsFeed () {
-    return (
+        isAuthenticated && (
         <div id="content">
             <div id="post-area">
                 <h3>Wanna send a song?</h3>
@@ -73,44 +43,6 @@ function NewsFeed () {
             <button onclick="deletePost('post-1')">Delete</button>
             </div> */}
         </div>
-    )
+        )
+    );
 }
-
-function RightSideBar ({ username, song }) {
-    return (
-        <div>
-            <div id="right-sidebar">
-                <h2>{username}</h2>
-                <h3>Pinned songs</h3>
-                <ul class="friend-list">
-                    <li class="friend-expanded">{username}
-                        <ul>
-                            <li>{song}</li>
-                        </ul>
-                    </li>
-                    <li>Friend 2</li>
-                    <li>Friend 3</li>
-                </ul>
-                </div>
-        </div>
-    )
-}
-
-// function UserInfo ({ user, size }) {
-//     return (
-//         <div>
-//             <img 
-//                 className='avatar'
-//                 src={user.avatar}
-//                 alt={user.name}
-//                 width={size}
-//                 height={size}
-//             />
-//             <h2>{username}</h2>
-
-//         </div>
-//     )
-// }
-
-
-
