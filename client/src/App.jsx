@@ -23,7 +23,7 @@ export default function App() {
                 <LeftSideBar/>
                 <NewsFeed/>
                 <RightSideBar
-                    username="Tri Nguyen"
+                    size="40"
                     song="Ngot - De Quen"
                 />
             </>

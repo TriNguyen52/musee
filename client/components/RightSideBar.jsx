@@ -1,15 +1,21 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function RightSideBar ({ username, song }) {
+export default function RightSideBar ({ size, song }) {
     const { user, isAuthenticated } = useAuth0();
     return (
         isAuthenticated && (
         <div>
             <div id="right-sidebar">
-                <h2>{username}</h2>
+            <img 
+                className='avatar'
+                src={user.picture}
+                width={size}
+                height={size}
+            />
+                <h2>{user.nickname}</h2>
                 <h3>Pinned songs</h3>
                 <ul className="friend-list">
-                    <li className="friend-expanded">{username}
+                    <li className="friend-expanded">{user.nickname}
                         <ul>
                             <li>{song}</li>
                         </ul>
